@@ -1,0 +1,23 @@
+puzzle_game/
+├── main.c
+├── puzzle.h
+├── puzzle.c
+├── Makefile
+└── assets/
+    ├── images/
+    │   └── thumbnails/
+    │       ├── puzzle1.jpg
+    │       ├── puzzle2.jpg
+    │       ├── puzzle3.jpg
+    │       ├── puzzle4.jpg
+    │       ├── puzzle5.jpg
+    │       ├── noir1.jpg
+    │       ├── noir2.jpg
+    │       └── noir3.jpg
+    ├── sounds/
+    │   ├── place.wav (optionnel)
+    │   ├── victory.wav (optionnel)
+    │   ├── wrong.wav (optionnel)
+    │   └── music.mp3 (optionnel)
+    └── fonts/
+        └── DejaVuSans.ttf
