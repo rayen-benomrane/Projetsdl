@@ -1,30 +1,14 @@
-CC = gcc
-CFLAGS = -Wall -O2 -g `sdl2-config --cflags`
-LDFLAGS = `sdl2-config --libs` -lSDL2_image -lSDL2_ttf -lSDL2_mixer -lm
+puzzle : main.o puzzle.o
+	gcc puzzle.o main.o -o puzzle -lSDL2_ttf -lSDL2_mixer -lSDL2_image -lSDL2 -lm -g
 
-TARGET = puzzle_game
-SOURCES = main.c puzzle.c
-HEADERS = puzzle.h
-OBJECTS = $(SOURCES:.c=.o)
+main.o : main.c
+	gcc -c main.c `sdl2-config --cflags`
 
-all: $(TARGET)
-
-$(TARGET): $(OBJECTS)
-	$(CC) -o $@ $^ $(LDFLAGS)
-
-
-%.o: %.c $(HEADERS)
-	$(CC) $(CFLAGS) -c $< -o $@
+puzzle.o : puzzle.c
+	gcc -c puzzle.c `sdl2-config --cflags`
 
 clean:
-	rm -f $(OBJECTS) $(TARGET)
+	rm -f *.o puzzle
 
-
-run: $(TARGET)
-	./$(TARGET)
-
-install:
-	sudo apt-get update
-	sudo apt-get install -y libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev libsdl2-mixer-dev
-
-.PHONY: all clean run install
+run: puzzle
+	./puzzle
