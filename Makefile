@@ -1,14 +1,22 @@
-jeu: main.o ennemi.o projectile.o
-	gcc main.o ennemi.o projectile.o -o jeu -lSDL2 -lSDL2_image -lm
+CC = gcc
+CFLAGS = -Wall -Wextra -g
+LIBS = -lSDL2 -lSDL2_image -lm
+OBJ = main.o perso.o
+EXEC = jeu
 
-main.o: main.c
-	gcc -Wall -Wextra -g -c main.c
+all: $(EXEC)
 
-ennemi.o: ennemi.c
-	gcc -Wall -Wextra -g -c ennemi.c
+$(EXEC): $(OBJ)
+	$(CC) $(OBJ) -o $(EXEC) $(LIBS)
 
-projectile.o: projectile.c
-	gcc -Wall -Wextra -g -c projectile.c
+main.o: main.c perso.h
+	$(CC) $(CFLAGS) -c main.c
+
+perso.o: perso.c perso.h
+	$(CC) $(CFLAGS) -c perso.c
 
 clean:
-	rm -f *.o jeu
+	rm -rf *.o
+
+mrproper: clean
+	rm -rf $(EXEC)
